@@ -19,6 +19,8 @@ document.getElementById("key-pad").addEventListener("click", (event) => {
   if (isNaN(number)) {
     if (number == "C") {
       calc.value = "";
+    } else {
+      calc.value = calc.value.slice(0, -1);
     }
   } else {
     const previousCalc = calc.value;
