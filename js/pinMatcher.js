@@ -19,7 +19,7 @@ document.getElementById("key-pad").addEventListener("click", (event) => {
   if (isNaN(number)) {
     if (number == "C") {
       calc.value = "";
-    } else {
+    } else if (number == "&lt") {
       calc.value = calc.value.slice(0, -1);
     }
   } else {
@@ -28,3 +28,17 @@ document.getElementById("key-pad").addEventListener("click", (event) => {
     calc.value = newCalc;
   }
 });
+
+function verifyPin() {
+  const typedPin = document.getElementById("typed-numbers").value;
+  const genPin = document.getElementById("display-pin").value;
+  const failError = document.getElementById("verify-failed");
+  const successMsg = document.getElementById("verify-success");
+  if (typedPin == genPin) {
+    successMsg.style.display = "block";
+    failError.style.display = "none";
+  } else {
+    failError.style.display = "block";
+    successMsg.style.display = "none";
+  }
+}
