@@ -30,15 +30,23 @@ document.getElementById("key-pad").addEventListener("click", (event) => {
 });
 
 function verifyPin() {
+  const tryLeft = document.getElementById("tryLeft");
   const typedPin = document.getElementById("typed-numbers").value;
   const genPin = document.getElementById("display-pin").value;
   const failError = document.getElementById("verify-failed");
   const successMsg = document.getElementById("verify-success");
-  if (typedPin == genPin) {
+  if (typedPin == genPin && genPin != "") {
     successMsg.style.display = "block";
     failError.style.display = "none";
-  } else {
-    failError.style.display = "block";
-    successMsg.style.display = "none";
+  } else if (typedPin != genPin && genPin != "") {
+    tryLeft.innerText = parseInt(tryLeft.innerText) - 1;
+    if (tryLeft.innerText <= 0) {
+      document.getElementById("tryLeftZero").style.display = "block";
+      failError.style.display = "none";
+      document.getElementById("submit").disabled = true;
+    } else {
+      failError.style.display = "block";
+      successMsg.style.display = "none";
+    }
   }
 }
