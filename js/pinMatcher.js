@@ -12,3 +12,17 @@ function generatePin() {
   const pin = getPin();
   document.getElementById("display-pin").value = pin;
 }
+
+document.getElementById("key-pad").addEventListener("click", (event) => {
+  const number = event.target.innerText;
+  const calc = document.getElementById("typed-numbers");
+  if (isNaN(number)) {
+    if (number == "C") {
+      calc.value = "";
+    }
+  } else {
+    const previousCalc = calc.value;
+    const newCalc = previousCalc + number;
+    calc.value = newCalc;
+  }
+});
